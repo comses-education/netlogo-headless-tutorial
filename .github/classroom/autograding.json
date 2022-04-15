@@ -1,0 +1,14 @@
+{
+  "tests": [
+    {
+      "name": "Obtained Output?",
+      "setup": "",
+      "run": "test -f results/table-output.csv",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 6,
+      "points": 1
+    }
+  ]
+}

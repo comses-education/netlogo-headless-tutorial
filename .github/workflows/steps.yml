@@ -1,0 +1,46 @@
+name: Containerization Steps
+
+on: 
+  push:
+#    paths-ignore:
+#    - results/**.csv
+
+jobs:
+
+#  Step-1-Create-Dockerfile:
+#    name: Step 1
+#    uses: ./.github/workflows/step-1.yml
+  Step-1-Create-Dockerfile:
+    name: Step 1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+   
+      - name: Check Dockerfile
+        uses: ./.github/actions/step-1
+        
+  Step-2-Build-Image:
+    needs: Step-1-Create-Dockerfile
+    name: Step 2
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        
+      - name: Build Docker Image
+        uses: ./.github/actions/step-2
+       
+  Step-3-Run-Experiment:
+    needs: Step-2-Build-Image
+    name: Step 3
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        
+      - name: Run Experiment
+        uses: ./.github/actions/step-3
+
+      - name: Update grades
+        uses: ./.github/actions/update-autogr

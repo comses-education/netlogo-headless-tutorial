@@ -1,0 +1,15 @@
+name: "Update grades"
+
+runs:
+    using: "composite"
+    steps: 
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+          
+      - name: Update repo
+        run: git checkout HEAD^
+        shell: bash
+        
+      - name: Update grades
+        uses: education/autograding@v1

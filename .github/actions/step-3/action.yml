@@ -1,0 +1,57 @@
+name: "Step 3"
+description: "Run BehaviorSpace Experiment"
+
+runs:
+    using: "composite"
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        
+      - name: run_experiment.sh file
+        run: |
+          test -f run_experiment.sh || \
+          (echo "::error title=run_experiment.sh not found::Was it deleted by mistake? Check "How to Create a file" at docs/extras/ to create a new run_experiment.sh" && false)
+        shell: bash
+        
+      - name: Insert run command
+        run: |
+          grep -q "docker run" run_experiment.sh || \
+          (echo "::error title='run' command missing::Make sure you add the 'run' command to run_experiment.sh \
+          and modify the appropriate arguments." && false)
+        shell: bash
+        
+      - name: BehaviorSpace experiment
+        run: |
+          grep -q "\-\-experiment experiment1" run_experiment.sh || \
+          (echo "::error title=Incorrect or missing BehaviorSpace experiment::In this example there is only \
+          one experiment, named 'experiment1' (no capital letters). The last part of the 'run' command should \
+          read '--experiment experiment1'" && false)
+        shell: bash
+          
+      - name: Check volumes
+        run: |
+          (grep -q "\$GITHUB_WORKSPACE/results:" run_experiment.sh || \
+          grep -q "\$GITHUB_WORKSPACE/results/:" run_experiment.sh) || \
+          (echo "::error title=Incorrect or missing result folder path::We want to get the experiment results \
+          in the 'results' folder, not anywhere else. 'results' has to be preceded with the variable \$GITHUB_WORKSPACE \
+          because it stores the absolute path where our repository filesystem is located in the GitHub runners we are \
+          using. Thus, the beggining of the 'run' command should read 'docker run -v \
+          \$GITHUB_WORKSPACE/results/:/home/results'" && false)
+        shell: bash
+        
+      - name: Build image
+        run: ./build_image.sh
+        shell: bash
+    
+      - name: Run experiment
+        run: ./run_experiment.sh
+        shell: bash
+        
+      - name: Push result files
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add results
+          git commit -m "Success! Your result csv files have been updated"
+          git push
+        shell: bash

@@ -1,0 +1,59 @@
+name: "Step 2"
+description: "Build the Docker Image"
+
+runs:
+    using: "composite"
+    steps:
+      - name: build_image.sh file
+        run: |
+          test -f build_image.sh || \
+          (echo "::error title=build_image.sh not found::Was it deleted by mistake? Check "How to Create a file" at docs/extras/ to create a new build_image.sh" && false)
+        shell: bash
+        
+      - name: Insert build command
+        run: |
+          grep -q "docker build" build_image.sh || \
+          (echo "::error title='build' command missing::Make sure you add the 'build' command to build_image.sh \
+          and modify the appropriate arguments." && false)
+        shell: bash
+        
+      - name: Check model path
+        run: |
+          grep -q src/Wolf-Sheep-Predation.nlogo build_image.sh || \
+          (echo "::error title=Incorrect path to model::The model is in the 'src' folder. Also, don't forget to \
+          wrap the name of the file or the entire path in double quotes." && false)
+        shell: bash
+     
+      - name: Check NL version
+        run: |
+          grep -q "6.2.2" build_image.sh || \
+          (echo "::error title=Incorrect NetLogo version::For this exercise, please use version 6.2.2. You \
+          may modify this as needed when containerizing your own model." && false)
+        shell: bash
+        
+      - name: No arg spaces
+        run: |
+          if (grep -q " =" build_image.sh || grep -q "= " build_image.sh); \
+          then (echo "::error title=Spaces found in argument definition::Make sure there are \
+          no spaces at either side of the '=' signs." && false); fi
+        shell: bash
+          
+      - name: Final '.'
+        run: |
+          grep -q " ." build_image.sh || \
+          (echo "::error title=Command is missing a final '.'::A small detail that breaks your build command. \
+          Don't forget to add the final '.'." && false)
+        shell: bash
+          
+      - name: Image name
+        run: |
+          grep -qw "wolfsheep" build_image.sh || \
+          echo "::warning title='wolfsheep' was not used as image name::Nothing wrong with it; just make sure \
+          your image name does not have capital letters, spaces or starts or ends with a period, dash or underscore. \
+          Also, remember to use this name in Step 3."
+        shell: bash
+          
+      - name: Build image
+        run: ./build_image.sh
+        shell: bash
+          
