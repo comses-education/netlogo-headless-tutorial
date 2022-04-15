@@ -6,7 +6,7 @@ You can find the basic containerization steps in [this video](https://youtu.be/I
 
  2. Download this repository to your machine. To do this, scroll to the top of this page, right-click on the `< > Code` tab and select "Open Link in New Tab". In the tab you just opened, just above the box showing all the contents of this repository, you will see a green `Code` button. Click on it and then on `Downlad ZIP`. In the new window, select the location you want for the zip file and, once it has downloaded, unzip it. You will notice that the project's main folder will be `containerizing-netlogo-(your username)-main`.
  
- ![NS1](extras/images/NS1.png)
+<img src='../extras/images/NS1.png' width='600'>
  
  3. It is useful to have a toy BehaviorSpace experiment that does not take long to run. We suggest to create one within your NetLogo model file so you can test the containerization process. You can always delete it and replace your Docker image with the new version of the model once you know the containerization will work.
  

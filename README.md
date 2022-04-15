@@ -1,6 +1,6 @@
 # Containerizing a NetLogo model
 
-Welcome! This tutorial will walk you through the process of containerizing a NetLogo model. To learn more about the importance of containerizing models and the basic principles behind this tool, we invite you to read [our article](https://doi.org/10.18174/sesmo.18074). The objective of this tutorial is to provide you with a hands-on experience of the steps involved, without the need to download or run anything locally in your machine. Once completed, we expect you to have a basic understanding of what you need to do to containerize and run your NetLogo model using Docker. With this knowledge and following the instructions given in [`docs/Next Steps`](docs/Next%20Steps), you should be able to containerize your own mode in your local machine.
+Welcome! This tutorial will walk you through the process of containerizing a NetLogo model. To learn more about the importance of containerizing models and the basic principles behind this tool, we invite you to read [our article](https://doi.org/10.18174/sesmo.18074). The objective of this tutorial is to provide you with a hands-on experience of the steps involved, without the need to download or run anything locally in your machine. Once completed, we expect you to have a basic understanding of what you need to do to containerize and run your NetLogo model using Docker. With this knowledge and following the instructions given in [`docs/Next Steps`](docs/Next%20Steps), you should be able to containerize your own mode in your local machine. Please note that we assume that you hace completed the [Introduction to Git and GitHub tutorial](https://classroom.github.com/a/SF1_14wJ) beforehand.
 
 We have structured this repository following the [suggested project organization](https://swcarpentry.github.io/good-enough-practices-in-scientific-computing/#project-organization) by Software Carpentry. Feel free to implement this organization within your own project. In this tutorial you will containerize the "Wolf Sheep Predation" model from NetLogo's model library. We have modified it to create a mock BehaviorSpace experiment (named "experiment1") and included it in the `src` folder of this repository. Feel free to explore the contents of this repository before coming back to this page. However, we suggest to refrain from modifying them until instructed in the steps below. Keep in mind that the tutorial will only allow you to containerize the "Wolf Sheep Predation" model already included in the `src` folder and the containerization will fail if this file is modified.
 
@@ -12,7 +12,7 @@ We broke down the process of building and running a Docker container into three 
 
 At this point, the badge is in a red, `failing`, state. It will stay this way until all three steps of the tutorial are successfully completed, at which point it will change to a green, `passing` state. However, keep in mind that, even when your submission has passed the three tests, it takes some minutes for the badge status to update to `passing`. Therefore, it is advisable to click on the badge and look for the results of the latest commit, instead of waiting until the badge status is updated. The badge will appear at the end of each step so it will make it easier to check your progress.
 
-Once you successfully containerize this model and run the mock experiment, you will have completed this tutorial. We expect that this exercise will equip you with the basic tools needed to containerize any NetLogo model. After completing this tutorial, we invite you to follow the instructions given in [`docs/Next Steps`](docs/Next%20Steps) to download this repository and modify the steps described here to containerize your own model. We have included a list of common Docker error messages and how to solve them at [`docs/extras/Troubleshooting.md`](docs/extras/Troubleshooting.md). Let us know if you find any roadblocks or any other problem by creating an issue [here](https://github.com/comses-education/NetLogo-headless/issues)!
+Once you successfully containerize this model and run the mock experiment, you will have completed this tutorial. We expect that this exercise will equip you with the basic tools needed to containerize any NetLogo model. After completing this tutorial, we invite you to follow the instructions given in [`docs/Next Steps`](docs/Next%20Steps) to download this repository and modify the steps described here to containerize your own model. We have included a list of common Docker error messages and how to solve them at [`docs/extras/Troubleshooting.md`](docs/extras/Troubleshooting.md). Let us know if you find any roadblocks or any other problem by creating an issue [here](https://github.com/comses-education/NetLogo-headless-tutorial/issues)!
 
 ***
 
@@ -50,17 +50,17 @@ ENTRYPOINT ["/home/netlogo/netlogo-headless.sh", \
 
 2. (Recommended) If you prefer to keep a window or tab with these instructions open, scroll to the top of the page, where you will find the title: `comses-education/containerizing-netlogo-(your username)`. Right-click on `containerizing-netlogo-(your username)` and open the link in a new window/tab. This will take you to this same landing page, which will allow you to revisit the instructions while creating the Dockerfile.
 
-![Step1-2,3](docs/extras/images/S1-23.png)
+<img src='docs/extras/images/S1-23.png' width='600'>
 
 3. Click on `Add file`, then on `Create new file`.
 4. Paste the code you copied in step 1 into the text box.
 5. Above this text box, you will see a small text field where you can name your file. Write the word "Dockerfile" (with a capital "D"). You should now be able to read the path `containerizing-netlogo-(your GitHub username)/Dockerfile`. Note that "Dockerfile" is not followed by any format extension (no ".txt" or ".yml", for example).
 
-![Step1-5](docs/extras/images/S1-5.png)
+<img src='docs/extras/images/S1-5.png' width='600'>
 
 6. Scroll to the bottom of the page and click on `Commit new file`.
 
-![Step1-6](docs/extras/images/S1-6.png)
+<img src='docs/extras/images/S1-6.png' width='600'>
 
 #### Did it work?
 
@@ -82,7 +82,7 @@ Follow these instructions (again, it will be more comfortable if you have a seco
 
 2. Click on the file `build_image.sh` and then, at the top-right corner of the text box showing the contents of the file, click on the pencil ("Edit this file") button.
 
-![Step2-2](docs/extras/images/S2-2.png)
+<img src='docs/extras/images/S2-2.png' width='600'>
 
 3. Paste the command and replace the <code><ins>underlined</ins></code> arguments as directed:
 * Replace <code><ins>pathtoNLfile</ins></code> with the _relative_ path to the NetLogo model file, including the .nlogo extension. Relative to the location of the Dockerfile, the NetLogo model file is located at the following path: `src/Wolf-Sheep-Predation.nlogo`. Therefore, for this exercise, this is the path you should use after `MODEL_PATH=`. Note that using spaces for the `.nlogo` file name can be problematic. When containerizing your own model, we recommend to edit your model file name so spaces are erased or replaced by dashes or underscores.
@@ -91,7 +91,7 @@ Follow these instructions (again, it will be more comfortable if you have a seco
 * Make sure you are _not_ leaving any spaces between the `=` sign and the file path or version number you inserted, and to include the `.` at the end of the command.
 4. Scroll to the bottom of the page and commit your changes.
 
-![Step2-4](docs/extras/images/S2-4.png)
+<img src='docs/extras/images/S2-4.png' width='600'>
 
 
 #### Did it work?
