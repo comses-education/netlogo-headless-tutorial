@@ -1,0 +1,27 @@
+name: Step 3
+
+on:
+  push:
+    paths:
+      - 'run_experiment.sh'
+
+jobs:
+  Step-3:
+    name: Step 3 - Run Experiment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        
+      - name: Check files
+        uses: ./.github/actions/filemods        
+        
+      - name: Check Dockerfile
+        #if: ${{ success() }}
+        uses: ./.github/actions/step-1
+        
+      - name: Build Docker Image
+        uses: ./.github/actions/step-2
+        
+      - name: Run Experiment
+        uses: ./.github/actions/step-3

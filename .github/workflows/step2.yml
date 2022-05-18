@@ -1,0 +1,24 @@
+name: Step 2
+
+on:
+  push:
+    paths:
+      - 'build_image.sh'
+
+jobs:
+  Step-2:
+    name: Step 2 - Build Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        
+      - name: Check files
+        uses: ./.github/actions/filemods        
+        
+      - name: Check Dockerfile
+        #if: ${{ success() }}
+        uses: ./.github/actions/step-1
+        
+      - name: Build Docker Image
+        uses: ./.github/actions/step-2

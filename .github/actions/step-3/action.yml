@@ -49,9 +49,16 @@ runs:
         
       - name: Push result files
         run: |
-          git config user.name github-actions
+          git config user.name "Docker Results"
           git config user.email github-actions@github.com
           git add results
           git commit -m "Success! Your result csv files have been updated"
           git push
         shell: bash
+        
+      - name: Notify
+        uses: cinotify/github-action@main
+        with:
+          to: 'education@comses.net'
+          subject: 'New Certificate Needed'
+          body: 'Someone has completed the NetLogo Containerization training module.'

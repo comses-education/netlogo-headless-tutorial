@@ -1,0 +1,46 @@
+name: File Check
+
+on:
+  push:
+    paths-ignore:
+      - '.github/workflows/*'
+      - 'Docker*'
+      - 'docker*'
+      - '*file'
+      - 'build_image.sh'
+      - 'run_experiment.sh'
+        
+#concurrency:
+#  group: ${{ github.sha }}
+#  cancel-in-progress: true
+
+jobs:
+  Step-1:
+    name: Check files
+    runs-on: ubuntu-latest
+    steps:
+     - name: Get previous state
+       uses: actions/checkout@v3
+       with:
+         fetch-depth: 2
+#        
+#      - name: Restore previous state
+#        run: |
+#          git config user.name github-actions
+#          git config user.email github-actions@github.com
+#          git add .
+#          git commit -m "Restored previous state"
+#          git push
+#        shell: bash
+     - name: Undo push
+       run: |
+         git config user.name github-actions
+         git config user.email github-actions@github.com
+         git reset --hard HEAD~1
+         git push --force
+        
+     - run: |
+         echo "::error title=Changes not allowed::Your latest commit included changes that are  \
+         not allowed in this repository and were rejected. To avoid this error, limit your work \
+         to adding/editing the files: ./Dockerfile, ./build_image.sh, and ./run_experiment.sh."
+         exit 1

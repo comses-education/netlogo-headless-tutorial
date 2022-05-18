@@ -1,0 +1,34 @@
+name: Training Completion
+
+on:
+  workflow_run:
+    workflows: [Step 3]
+    types: [completed]
+
+jobs:
+  build:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    name: Autograding
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout updated repo
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.after }}
+          
+      - name: Update grades
+        uses: education/autograding@v1
+        
+      - run: |
+          echo "::notice title=Congratulations!::You have completed the containerization \
+          training module"
+#github.actor
+          
+  on-failure:
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    name: On failure
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "::error title=Error in run_experiment.sh::Your latest commit contained an error. See Step 3 for more details."
+          exit 1

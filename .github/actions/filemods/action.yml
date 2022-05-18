@@ -1,0 +1,25 @@
+name: "Check files"
+
+runs:
+    using: "composite"
+    steps:
+      - name: Check files
+        uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            changes:
+              - '**.nlogo'
+              - '*/**'
+              - added|deleted: '**.sh'
+          #list-files: 'shell'
+          
+      - name: Rm extra .nlogo
+        if: steps.filter.outputs.changes == 'true'
+        run: |
+          echo "::error title=Some of the newest changes are not allowed::Your latest commit \
+          included changes that are not allowed in this repository and were rejected. To \
+          avoid this error, limit your work adding/editing the files: ./Dockerfile, \
+          ./build_image.sh, and ./run_experiment.sh."
+          exit 1
+        shell: bash

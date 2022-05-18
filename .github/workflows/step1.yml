@@ -1,0 +1,29 @@
+name: Step 1
+
+on:
+  push:
+    paths:
+      - '**/**Dock*'
+      - '**/**dock*'
+      - '**Dock*'
+      - '**dock*'
+      - '**/*ocke*'
+      - '**/*cker*'
+      - '**/*file*'
+        
+
+jobs:
+  Step-1:
+    #needs: Check-files
+    name: Step 1 - Dockerfile
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        
+      - name: Check files
+        uses: ./.github/actions/filemods        
+        
+      - name: Check Dockerfile
+        #if: ${{ success() }}
+        uses: ./.github/actions/step-1
