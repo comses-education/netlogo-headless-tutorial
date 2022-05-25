@@ -14,7 +14,7 @@ runs:
               - added|deleted: '**.sh'
           #list-files: 'shell'
           
-      - name: Rm extra .nlogo
+      - name: Error on changes
         if: steps.filter.outputs.changes == 'true'
         run: |
           echo "::error title=Some of the newest changes are not allowed::Your latest commit \
