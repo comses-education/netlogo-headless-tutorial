@@ -122,7 +122,7 @@ docker run -v <path/to/your/results/folder>:/home/results <imagename> --experime
 ```
 
 2. Click on the file `run_experiment.sh` and then, at the top-right corner of the text box showing the contents of the file, click on the pencil ("Edit this file") button.
-3. Paste the command and replace the <code><ins>underlined</ins></code> arguments as directed:
+3. Paste the command and replace the arguments between `< >` as directed:
 * `<path/to/your/results/folder>` is replaced by the _absolute_ path to your results folder in your computer. If the folder does not exist, Docker will create it. For this exercise, the folder that receives the results is the following: `$GITHUB_WORKSPACE/results`. When running experiments in your own machine, note that the path for the receiving folder has to be _absolute_, meaning that it has to start with a `/` or a `~` (or a `C:` in Windows machines). For example, and absolute path would look like `~/Documents/MyProject/results/`.
 * `<imagename>` is replaced by the name you gave to the image in Step 2 (in our case, `wolfsheep`).
 * `<experimentname>` is replaced by the name of the experiment you want to run. Note that it has to match exactly with the name saved in the .nlogo file. In our example, we saved our mock experiment under the name `experiment1`.
