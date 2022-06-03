@@ -30,7 +30,7 @@ Here is where the `extensions` folder is located in the different operating syst
 > - On 64-bit Windows with 32-bit NetLogo: C:\Program Files (x86)\NetLogo 6.2.2\app\extensions
 > - On Linux: the app/extensions subdirectory of the NetLogo directory extracted from the installation .tgz
  
-### `Dockerfile`, `docker build`, `docker run`.
+### Following the three steps: `Dockerfile`, `docker build`, `docker run`.
 
  [This video section](https://youtu.be/ICYM-vXx_Q4?t=132) provides a visual guidance for steps 7 to 10.
     

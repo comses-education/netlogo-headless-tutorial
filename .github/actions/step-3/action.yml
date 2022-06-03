@@ -32,9 +32,10 @@ runs:
         run: |
           (grep -q "\$GITHUB_WORKSPACE/results:" run_experiment.sh || \
           grep -q "\$GITHUB_WORKSPACE/results/:" run_experiment.sh) || \
-          (echo "::error title=Incorrect or missing result folder path::We want to get the experiment results \
-          in the 'results' folder, not anywhere else. 'results' has to be preceded with the variable \$GITHUB_WORKSPACE \
-          because it stores the absolute path where our repository filesystem is located in the GitHub runners we are \
+          (echo "::error title=Incorrect or missing result folder path::We want to get the \
+          experiment results in the 'results' folder, not anywhere else. 'results' has to be \
+          preceded with the variable \$GITHUB_WORKSPACE because it stores the absolute path \
+          where our repository filesystem is located in the GitHub runners we are \
           using. Thus, the beggining of the 'run' command should read 'docker run -v \
           \$GITHUB_WORKSPACE/results/:/home/results'" && false)
         shell: bash

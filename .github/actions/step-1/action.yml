@@ -11,14 +11,16 @@ runs:
       - name: Looking for Dockerfile
         run: |
           test -f Dockerfile || \
-          (echo "::error title=Dockerfile not found::Make sure you pasted the code and saved it as 'Dockerfile' \
-          (with a capital 'D' and no extensions, e.g. 'Dockerfile.txt'). Also, was it saved at \
-          'containerizing-netlogo-(yourusername)/'? Any other location is not acceptable." && false)
+          (echo "::error title=Dockerfile not found::Make sure you pasted the code and saved \
+          it as 'Dockerfile' (with a capital 'D' and no extensions, e.g. 'Dockerfile.txt'). \
+          Also, was it saved at 'containerizing-netlogo-(yourusername)/'? Any other location is \
+          not acceptable." && false)
         shell: bash
           
       - name: Dockerfile contents
         run: |
-          grep -qe "northwestern" -e "NLModel" -e "headless" Dockerfile || \
-          (echo "::error title=Incorrect Dockerfile contents::Make sure you copied and pasted \
-          the entire Dockerfile contents." && false) 
+          (grep -q "northwestern" Dockerfile && grep -q "NLModel" Dockerfile  && \
+          grep -q "headless" Dockerfile) || (echo "::error title=Incorrect or incomplete \
+          Dockerfile contents::Make sure you copied and pasted the entire Dockerfile \
+          contents." && false) 
         shell: bash
