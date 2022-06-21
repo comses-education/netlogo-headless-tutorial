@@ -27,6 +27,13 @@ runs:
           one experiment, named 'experiment1' (no capital letters). The last part of the 'run' command should \
           read '--experiment experiment1'" && false)
         shell: bash
+        
+      - name: Deleted < >
+        run: |
+          grep -q "<\|>" build_image.sh || \
+          (echo "::error title=Please remove the < > symbols from your run command::They were \
+          added to visually mark the sections that were to be edited, but they have to be deleted \
+          for the run command to execute." && false)
           
       - name: Check volumes
         run: |

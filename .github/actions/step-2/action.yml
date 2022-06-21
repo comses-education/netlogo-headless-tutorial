@@ -40,9 +40,17 @@ runs:
           
       - name: Final '.'
         run: |
-          grep -q " ." build_image.sh || \
+          grep -q " \." build_image.sh || \
           (echo "::error title=Command is missing a final '.'::A small detail that breaks your build command. \
-          Don't forget to add the final '.'." && false)
+          Don't forget to add the final '.'. Also, make sure that there is one space between the name of the image and that '.'." && false)
+        shell: bash
+        
+      - name: Deleted < >
+        run: |
+          grep -q "<\|>" build_image.sh || \
+          (echo "::error title=Please remove the < > symbols from your build command::They were \
+          added to visually mark the sections that were to be edited, but they have to be deleted \
+          for the build command to run." && false)
         shell: bash
           
       - name: Image name
