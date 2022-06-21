@@ -30,10 +30,10 @@ runs:
         
       - name: Deleted < >
         run: |
-          grep -q "<\|>" build_image.sh && \
+          if grep -q "<\|>" run_experiment.sh; then \
           (echo "::error title=Please remove the < > symbols from your run command::They were \
           added to visually mark the sections that were to be edited, but they have to be deleted \
-          for the run command to execute." && false)
+          for the run command to execute." && false); fi
           
       - name: Check volumes
         run: |
