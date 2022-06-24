@@ -1,6 +1,6 @@
 # Containerizing a NetLogo model
 
-Welcome! This tutorial will walk you through the process of containerizing a NetLogo model. To learn more about the importance of containerizing models and the basic principles behind this tool, we invite you to read [our article](https://doi.org/10.18174/sesmo.18074). The objective of this tutorial is to provide you with a hands-on experience of the steps involved, without the need to download or run anything locally in your machine. Once completed, we expect you to have a basic understanding of what you need to do to containerize and run your NetLogo model using Docker. With this knowledge and following the instructions given in [`docs/Next Steps`](docs/Next%20Steps), you should be able to containerize your own mode in your local machine. Please note that we assume that you have completed the [Basics of Git and GitHub tutorial](https://classroom.github.com/a/bLyjPEf6) beforehand or that you are already familiar with how to use GitHub.
+Welcome! This tutorial will walk you through the process of containerizing a NetLogo model. To learn more about the importance of containerizing models and the basic principles behind this tool, we invite you to read [our article](https://doi.org/10.18174/sesmo.18074). The objective of this tutorial is to provide you with a hands-on experience of the steps involved, without the need to download or run anything locally in your machine. Once completed, we expect you to have a basic understanding of what you need to do to containerize and run your NetLogo model using Docker. With this knowledge and following the instructions given in [`docs/Next Steps`](docs/Next%20Steps), you should be able to containerize your own model in your local machine. Please note that we assume that you have completed the [Basics of Git and GitHub tutorial](https://classroom.github.com/a/bLyjPEf6) beforehand or that you are already familiar with how to use GitHub.
 
 We have structured this repository following the [suggested project organization](https://swcarpentry.github.io/good-enough-practices-in-scientific-computing/#project-organization) by Software Carpentry. Feel free to implement this organization within your own project. In this tutorial you will containerize the "Wolf Sheep Predation" model from NetLogo's model library. We have modified it to create a mock BehaviorSpace experiment (named "experiment1") and included it in the `src` folder of this repository. Feel free to explore the contents of this repository before coming back to this page. However, we suggest that you refrain from modifying them until instructed in the steps below. 
 
@@ -111,9 +111,9 @@ Right-click on the `Step 2` badge below, open the link in a new tab, and look fo
 
 In this step you will run the container to open the model, run the specified BehaviorSpace experiment, obtain the output files specified in the last two lines of the `Dockerfile`, and transfer the results to a folder of your preference. This is all done through the use of the `docker run` command. Note that subsequent runs will overwrite the result files if the same folder is used twice to receive the results. 
 
-As with the `build` command, we will run the `run` command from a file, named `run_experiment.sh`, but it can be also executed from a terminal window when building and running your own container in your machine.
+As with the `build` command, we will run the `run` command from a file, named `run_experiment.sh`, but it can also be executed from a terminal window when building and running your own container on your machine.
 
-To run the experiment, follow the instructions (again, you can open a new window/tab with this instructions to have them at hand):
+To run the experiment, follow the instructions (again, you can open a new window/tab with these instructions to have them at hand):
 
 1. Copy the following line:
 
@@ -123,7 +123,7 @@ docker run -v <path/to/your/results/folder>:/home/results <imagename> --experime
 
 2. Click on the file `run_experiment.sh` and then, at the top-right corner of the text box showing the contents of the file, click on the pencil ("Edit this file") button.
 3. Paste the command and replace the sections marked with the `< >` symbols as directed (delete the `< >` symbols as you replace them):
-* `<path/to/your/results/folder>` is replaced by the _absolute_ path to your results folder in your computer. If the folder does not exist, Docker will create it. For this exercise, the folder that receives the results is the following: `$GITHUB_WORKSPACE/results`. When running experiments in your own machine, note that the path for the receiving folder has to be _absolute_, meaning that it has to start with a `/` or a `~` (or a `C:` in Windows machines). For example, and absolute path would look like `~/Documents/MyProject/results/`.
+* `<path/to/your/results/folder>` is replaced by the _absolute_ path to your results folder on your computer. If the folder does not exist, Docker will create it. For this exercise, the folder that receives the results is the following: `$GITHUB_WORKSPACE/results`. When running experiments on your own machine, note that the path for the receiving folder has to be _absolute_, meaning that it has to start with a `/` or a `~` (or a `C:` in Windows machines). For example, an absolute path would look like `~/Documents/MyProject/results/`.
 * `<imagename>` is replaced by the name you gave to the image in Step 2 (in our case, `wolfsheep`).
 * `<experimentname>` is replaced by the name of the experiment you want to run. Note that it has to match exactly with the name saved in the .nlogo file. In our example, we saved our mock experiment under the name `experiment1`.
 4. Scroll to the bottom of the page and commit your changes.
@@ -138,7 +138,7 @@ Once your work passes the tests for the three steps, you will be able to see two
 
 ## Final notes
 
-You have completed the tutorial, meaning that you are ready to containerize your own model! Now you can follow the instructions presented at [`docs/Next Steps/`](docs/Next%20Steps). We also created a [video](https://youtu.be/ICYM-vXx_Q4) showing how the containerization process would look like in a local computer. As a summary, it all boils down to three basic steps: create a Dockerfile, build the image, and run the experiment. 
+You have completed the tutorial, meaning that you are ready to containerize your own model! Now you can follow the instructions presented at [`docs/Next Steps/`](docs/Next%20Steps). We also created a [video](https://youtu.be/ICYM-vXx_Q4?t=132) showing what the containerization process would look like on a local computer. As a summary, it all boils down to three basic steps: create a Dockerfile, build the image, and run the experiment. 
 
 [![Tutorial](../../actions/workflows/complete.yml/badge.svg)](../../actions/workflows/complete.yml)
 

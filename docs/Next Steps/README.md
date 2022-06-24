@@ -45,10 +45,10 @@ Here is where the `extensions` folder is located in the different operating syst
 ```Dockerfile
 ENTRYPOINT ["/home/netlogo/netlogo-headless.sh", \
 "--model", "/home/src/NLModel.nlogo", \
-"--table", "/home/results/table-output.csv"
+"--table", "/home/results/table-output.csv"]
 ``` 
  
-Note that we deleted the `, /` symbols that were originally at the end of the last line. To see the changes, you will need to repeat the steps 7 to 9. In case you see like everything seems to work, but you don't see a difference in the output files, remember that repeating these steps using the modified Dockerfile will not delete the output format you are not interested on; it will only rewrite the output file you decided to keep.
+Note that we deleted the `, /` symbols that were originally at the end of the last line and replaced them with a closing bracket. To see the changes, you will need to repeat the steps 7 to 9. In case you see like everything seems to work, but you don't see a difference in the output files, remember that repeating these steps using the modified Dockerfile will not delete the output format you are not interested on; it will only rewrite the output file you decided to keep.
  
 ### Finalizing
  
