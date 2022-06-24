@@ -1,6 +1,6 @@
 # Containerizing a NetLogo model
 
-Welcome! This tutorial will walk you through the process of containerizing a NetLogo model. To learn more about the importance of containerizing models and the basic principles behind this tool, we invite you to read [our article](https://doi.org/10.18174/sesmo.18074). The objective of this tutorial is to provide you with a hands-on experience of the steps involved, without the need to download or run anything locally in your machine. Once completed, we expect you to have a basic understanding of what you need to do to containerize and run your NetLogo model using Docker. With this knowledge and following the instructions given in [`docs/Next Steps`](docs/Next%20Steps), you should be able to containerize your own model in your local machine. Please note that we assume that you have completed the [Basics of Git and GitHub tutorial](https://classroom.github.com/a/bLyjPEf6) beforehand or that you are already familiar with how to use GitHub.
+Welcome! This tutorial will walk you through the process of containerizing a NetLogo model. To learn more about the importance of containerizing models and the basic principles behind this tool, we invite you to read [our article](https://doi.org/10.18174/sesmo.18074). The objective of this tutorial is to provide you with a hands-on experience of the steps involved, without the need to download or run anything locally on your machine. Once completed, we expect you to have a basic understanding of what you need to do to containerize and run your NetLogo model using Docker. With this knowledge and following the instructions given in [`docs/Next Steps`](docs/Next%20Steps), you should be able to containerize your own model on your local machine. Please note that we assume that you have completed the [Basics of Git and GitHub tutorial](https://classroom.github.com/a/bLyjPEf6) beforehand or that you are already familiar with how to use GitHub.
 
 We have structured this repository following the [suggested project organization](https://swcarpentry.github.io/good-enough-practices-in-scientific-computing/#project-organization) by Software Carpentry. Feel free to implement this organization within your own project. In this tutorial you will containerize the "Wolf Sheep Predation" model from NetLogo's model library. We have modified it to create a mock BehaviorSpace experiment (named "experiment1") and included it in the `src` folder of this repository. Feel free to explore the contents of this repository before coming back to this page. However, we suggest that you refrain from modifying them until instructed in the steps below. 
 
@@ -84,7 +84,7 @@ Follow these instructions (again, it will be more comfortable if you have a seco
 1. Copy the following line:
 
 ```bash
-docker build --build-arg MODEL_PATH=<pathtoNLfile> --build-arg NETLOGO_VERSION=<NLversion> -t <imagename> .
+docker build --build-arg MODEL_PATH=<pathtoNLfile> --build-arg NETLOGO_VERSION=<NLversion> --tag <imagename> .
 ```
 
 2. Click on the file `build_image.sh` and then, at the top-right corner of the text box showing the contents of the file, click on the pencil ("Edit this file") button.
