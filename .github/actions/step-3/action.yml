@@ -34,6 +34,7 @@ runs:
           (echo "::error title=Please remove the < > symbols from your run command::They were \
           added to visually mark the sections that were to be edited, but they have to be deleted \
           for the run command to execute." && false); fi
+        shell: bash
           
       - name: Check volumes
         run: |
